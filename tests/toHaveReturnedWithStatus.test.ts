@@ -1,8 +1,9 @@
+import stripAnsi from 'strip-ansi'
+
 import '../src'
 import Server from './utils/Server'
 
 jest.retryTimes(5)
-import stripAnsi from 'strip-ansi'
 
 const server = new Server()
 
