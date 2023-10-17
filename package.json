@@ -1,0 +1,59 @@
+{
+  "name": "@universal-packages/fetch-jest",
+  "version": "0.0.0",
+  "description": "Jest tooling for fetch",
+  "author": "David De Anda <david@universal-packages.com> (https://github.com/universal-packages)",
+  "license": "MIT",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "repository": "git@github.com:universal-packages/universal-fetch-jest.git",
+  "scripts": {
+    "build": "tsc --p tsconfig.dis.json",
+    "test": "jest --watch",
+    "test:full": "jest --coverage --verbose",
+    "test:clear": "jest --clearCache",
+    "format": "prettier --write \"./{src,tests}/**/*.{ts,tsx,js,jsx,json}\"",
+    "update-dependents": "umaintenance update-dependents"
+  },
+  "dependencies": {
+    "form-data": "^4.0.0",
+    "http-status-codes": "^2.3.0",
+    "node-fetch": "^2.7.0"
+  },
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.2.0",
+    "@types/cron": "^2.0.0",
+    "@types/jest": "^29.5.5",
+    "@types/node": "^18.11.9",
+    "@types/node-fetch": "^2.6.6",
+    "@universal-packages/maintenance": "^1.2.2",
+    "jest": "^29.7.0",
+    "prettier": "^3.0.3",
+    "strip-ansi": "^6.0.0",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.2.2"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "collectCoverageFrom": [
+      "src/**/*.ts"
+    ]
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "printWidth": 180,
+    "trailingComma": "none",
+    "importOrder": [
+      "^[./]"
+    ],
+    "importOrderSeparation": true,
+    "importOrderSortSpecifiers": true,
+    "importOrderParserPlugins": [
+      "typescript",
+      "jsx",
+      "classProperties",
+      "decorators-legacy"
+    ]
+  }
+}
