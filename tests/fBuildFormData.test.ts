@@ -19,6 +19,7 @@ describe(fBuildFormData, (): void => {
 
     expect(fResponse).toHaveReturnedWithStatus(200)
     expect(fResponseBody).toMatchObject({
+      headers: { 'Content-Type': 'multipart/form-data' },
       method: 'POST',
       url: '/post-url/yes',
       body: expect.stringMatching(/Content-Disposition: form-data; name="file"; filename="test.txt"/)

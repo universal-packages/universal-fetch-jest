@@ -18,6 +18,6 @@ describe(fPut, (): void => {
     await fPut('/put-url/yes', { put: true })
 
     expect(fResponse).toHaveReturnedWithStatus(200)
-    expect(fResponseBody).toMatchObject({ method: 'PUT', url: '/put-url/yes', body: { put: true } })
+    expect(fResponseBody).toMatchObject({ headers: { 'Content-Type': 'application/json' }, method: 'PUT', url: '/put-url/yes', body: { put: true } })
   })
 })

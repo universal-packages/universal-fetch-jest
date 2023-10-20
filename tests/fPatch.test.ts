@@ -18,6 +18,6 @@ describe(fPatch, (): void => {
     await fPatch('/patch-url/yes', { patch: true })
 
     expect(fResponse).toHaveReturnedWithStatus(200)
-    expect(fResponseBody).toMatchObject({ method: 'PATCH', url: '/patch-url/yes', body: { patch: true } })
+    expect(fResponseBody).toMatchObject({ headers: { 'Content-Type': 'application/json' }, method: 'PATCH', url: '/patch-url/yes', body: { patch: true } })
   })
 })

@@ -18,6 +18,6 @@ describe(fPost, (): void => {
     await fPost('/post-url/yes', { post: true })
 
     expect(fResponse).toHaveReturnedWithStatus(200)
-    expect(fResponseBody).toMatchObject({ method: 'POST', url: '/post-url/yes', body: { post: true } })
+    expect(fResponseBody).toMatchObject({ headers: { 'Content-Type': 'application/json' }, method: 'POST', url: '/post-url/yes', body: { post: true } })
   })
 })
