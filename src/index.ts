@@ -177,8 +177,10 @@ async function setResponseBody(): Promise<void> {
   try {
     if (contentType && contentType.includes('application/json')) {
       global.fResponseBody = await fResponse.json()
-    } else {
+    } else if (contentType && contentType.includes('text/plain')) {
       global.fResponseBody = await fResponse.text()
+    } else {
+      global.fResponseBody = await fResponse.buffer()
     }
   } catch {
     global.fResponseBody = undefined
