@@ -161,12 +161,12 @@ function buildUrl(path?: string, query?: Record<string, any>): string {
 
 function buildInit(method: string, body?: any): RequestInit {
   const selectedBody = body || FETCH_CONTEXT.test?.body || FETCH_CONTEXT.global?.body
-  const contentType = selectedBody instanceof FormData ? 'multipart/form-data' : 'application/json'
+  const contentTypeHeaders = selectedBody instanceof FormData ? undefined : { 'Content-Type': 'application/json' }
 
   return {
     ...FETCH_CONTEXT.global,
     method: method.toUpperCase(),
-    headers: { ...{ 'Content-Type': contentType }, ...FETCH_CONTEXT.global?.headers, ...FETCH_CONTEXT.test?.headers },
+    headers: { ...contentTypeHeaders, ...FETCH_CONTEXT.global?.headers, ...FETCH_CONTEXT.test?.headers },
     body: selectedBody ? (typeof selectedBody === 'string' ? selectedBody : selectedBody instanceof FormData ? selectedBody : JSON.stringify(selectedBody)) : undefined
   }
 }
