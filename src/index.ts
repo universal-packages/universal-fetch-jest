@@ -16,6 +16,8 @@ const FETCH_CONTEXT: any = {
   inTestContext: false
 }
 
+global.fDefaultPort = DEFAULT_PORT
+
 // JEST CONTEXT SETTERS //////////////////////////////////////////////////////////////
 
 beforeEach(() => {

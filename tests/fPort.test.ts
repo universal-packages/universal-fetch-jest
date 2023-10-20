@@ -21,6 +21,7 @@ describe(fPort, (): void => {
 
     expect(fResponse).toHaveReturnedWithStatus(200)
     expect(fResponseBody).toEqual({ headers: expect.objectContaining({}), body: '', url: '/', method: 'POST' })
+    expect(fDefaultPort).toEqual(4000 + Number(process.env.JEST_WORKER_ID))
   })
 
   it('sets the request port per test', async (): Promise<void> => {

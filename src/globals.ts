@@ -20,6 +20,7 @@ declare global {
   function fHost(host: string): void
   function fPort(port: number): void
 
+  var fDefaultPort: number
   var fResponse: Response
   var fResponseBody: any
 
