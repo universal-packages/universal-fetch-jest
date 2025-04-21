@@ -14,7 +14,7 @@ afterEach(async (): Promise<void> => {
 })
 
 describe(fBuildFormData, (): void => {
-  it('creates a forma data object from a body and from files', async (): Promise<void> => {
+  it('creates a forma data object from a body and from a file', async (): Promise<void> => {
     await fPost('/post-url/yes', fBuildFormData({ post: true }, { file: './tests/__fixtures__/test.txt' }))
 
     expect(fResponse).toHaveReturnedWithStatus(200)
@@ -23,6 +23,18 @@ describe(fBuildFormData, (): void => {
       method: 'POST',
       url: '/post-url/yes',
       body: expect.stringMatching(/Content-Disposition: form-data; name="file"; filename="test.txt"/)
+    })
+  })
+
+  it('creates a forma data object from a body and from multiple files', async (): Promise<void> => {
+    await fPost('/post-url/yes', fBuildFormData({ post: true }, { file: ['./tests/__fixtures__/test.txt', './tests/__fixtures__/test2.txt'] }))
+
+    expect(fResponse).toHaveReturnedWithStatus(200)
+    expect(fResponseBody).toMatchObject({
+      headers: { 'Content-Type': expect.stringMatching(/multipart\/form-data;boundary=/) },
+      method: 'POST',
+      url: '/post-url/yes',
+      body: expect.stringMatching(/Content-Disposition: form-data; name="file"; filename="test.txt"[\s\S]*Content-Disposition: form-data; name="file"; filename="test2.txt"/)
     })
   })
 })

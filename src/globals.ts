@@ -11,7 +11,7 @@ declare global {
   function fPost(path?: string, body?: any): Promise<void>
   function fPut(path?: string, body?: any): Promise<void>
 
-  function fBuildFormData(body: Record<string, any>, files?: Record<string, string>): FormData
+  function fBuildFormData(body: Record<string, any>, files?: Record<string, string | string[]>): FormData
 
   function fInit(init: RequestInit): void
   function fContentType(type: string): void

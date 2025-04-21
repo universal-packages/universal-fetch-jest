@@ -104,7 +104,13 @@ global.fBuildFormData = function fBuildFormData(body: Record<string, any>, files
     const imagesKeys = Object.keys(files)
 
     for (let i = 0; i < imagesKeys.length; i++) {
-      formData.append(imagesKeys[i], createReadStream(files[imagesKeys[i]]))
+      const file = imagesKeys[i]
+
+      if (Array.isArray(files[file])) {
+        files[file].forEach((f) => formData.append(file, createReadStream(f)))
+      } else {
+        formData.append(file, createReadStream(files[file]))
+      }
     }
   }
 
